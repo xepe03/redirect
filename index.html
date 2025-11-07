@@ -17,10 +17,12 @@
             >연결 시간이 초과되었습니다. </p>
           <p class="mb-8">서버와 연결이 실패하였습니다.</p>
           
-          <button id="notify-btn"
+         <button id="notify-btn"
+  onclick="window.location.href='https://gall.dcinside.com/mini/board/lists/?id=dashplus'"
   class="px-4 inline py-2 text-sm font-medium leading-5 shadow text-white transition-colors duration-150 border border-transparent rounded-lg focus:outline-none focus:shadow-outline-blue bg-blue-600 active:bg-blue-600 hover:bg-blue-700">
-  관리자에게 알림 보내기
+  관리자 호출하러가기
 </button>
+
 
 <p id="notify-status" class="text-gray-500 mt-3 text-sm"></p>
     </div>
@@ -31,30 +33,6 @@
   </div>
 </div>
 
-<script>
-  document.getElementById("notify-btn").addEventListener("click", async () => {
-    const btn = document.getElementById("notify-btn");
-    const status = document.getElementById("notify-status");
-    btn.disabled = true;
-    btn.textContent = "전송 중...";
-    try {
-      const res = await fetch("https://delicate-field-eee3.jinminki5319.workers.dev/notify", {
-        method: "POST"
-      });
-      if (res.ok) {
-        status.textContent = " 알림이 전송되었습니다.";
-        btn.textContent = "전송 완료";
-      } else {
-        status.textContent = " 전송 실패 — 잠시 후 다시 시도해주세요.";
-        btn.textContent = "다시 시도";
-        btn.disabled = false;
-      }
-    } catch {
-      status.textContent = " 네트워크 오류";
-      btn.textContent = "다시 시도";
-      btn.disabled = false;
-    }
-  });
-  </script>
 </body>
 </html>
+
